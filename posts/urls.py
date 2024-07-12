@@ -4,4 +4,11 @@ from . import views
 
 app_name = 'posts'
 
-urlpatterns = [path('<slug:slug>', views.travel_detail, name='travel_detail')]
+urlpatterns = [
+    path('', views.posts_list, name='posts_list'),
+    path(
+        'post_detail/<slug:slug>',
+        views.post_detail,
+        name="post_detail",
+    ),
+]

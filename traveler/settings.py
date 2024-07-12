@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=l4cpf^wbep4@f$0hh_j$pm0dapti5a9xbox6s52(6qza%!00p
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0:8000',
+    '0.0.0.0',
     'localhost',
 ]
 
@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'dashboard.apps.DashboardConfig',
     'posts.apps.PostsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

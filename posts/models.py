@@ -11,12 +11,13 @@ class TravelPost(models.Model):
 
     travel_name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
-    cupon = models.CharField(max_length=20)
+    cupon = models.CharField(max_length=20, blank=True, null=True)
     slug = models.SlugField()
     url = models.URLField()
-    description = models.CharField(max_length=250)
+    description = models.CharField(max_length=1000)
     photo = models.ImageField(upload_to='travels/%Y/%m/%d/', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default=Status.ACTIVE, choices=Status.choices)
 
     class Meta:
         ordering = ['-created']
