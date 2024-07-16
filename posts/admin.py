@@ -10,10 +10,11 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
         'travel_name',
         'price',
-        'cupon',
+        'coupon',
         'slug',
         'url',
         'description',
+        'detail_description',
         'photo',
         'status',
     ]

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block contents %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ post.photo.url }}" class="img-fluid" alt="{{ post.travel_name }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ post.travel_name }}</h2>
+            <p>{{ post.detail_description }}</p>
+            <p><strong>Precio: {{ post.price }}</strong></p>
+            
+            <a href="{{ post.url }}" class="btn btn-primary">Ver oferta</a>
+            
+            {% if post.coupon %}
+            <div class="input-group mt-3">
+                <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="copyCoupon()">Copiar</button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyCoupon() {
+        var couponCode = document.getElementById("couponCode");
+        couponCode.select();
+        document.execCommand("copy");
+        alert("¡Cupón copiado!");
+    }
+</script>
+
+{% endblock %}

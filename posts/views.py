@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import TravelPost
 
@@ -9,5 +9,5 @@ def posts_list(request):
 
 
 def post_detail(request, travel_slug):
-    post = TravelPost.objects.get(slug=travel_slug)
-    return render(request, 'post/posts_detail.html', {'post': post})
+    post = get_object_or_404(TravelPost, slug=travel_slug)
+    return render(request, 'post/post_detail.html', {'post': post})
