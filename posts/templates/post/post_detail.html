@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block contents %}
 
-<div class="container mt-4">
+<div class="container mt-4 pt-4">
     <div class="row">
         <div class="col-md-6">
             <img src="{{ post.photo.url }}" class="img-fluid" alt="{{ post.travel_name }}">
@@ -11,16 +11,22 @@
             <p>{{ post.detail_description }}</p>
             <p><strong>Precio: {{ post.price }}</strong></p>
             
-            <a href="{{ post.url }}" class="btn btn-primary">Ver oferta</a>
-            
-            {% if post.coupon %}
-            <div class="input-group mt-3">
-                <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly>
-                <div class="input-group-append">
+            <div class="d-flex align-items-center">
+                <div>
+                    <a href="{{ post.url }}" class="btn btn-primary">Ver oferta</a>
+                </div>
+                {% if post.coupon %}
+                <div class="d-flex align-items-center">
+                    <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly style="max-width: 150px;">
                     <button class="btn btn-outline-secondary" type="button" onclick="copyCoupon()">Copiar</button>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 pt-4">
+            <p class="custom-description">{{ post.description }}</p>
         </div>
     </div>
 </div>
