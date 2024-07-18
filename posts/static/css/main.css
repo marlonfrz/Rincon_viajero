@@ -21,10 +21,31 @@ footer {
   border-top: 1px solid lightgray;
 }
 
+.card-link {
+  text-decoration: none;
+}
+
+.list-card{
+  height: 450px;
+  transition: transform 1s ease;
+}
+
 .img-list {
   height: 200px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 20px;
+  transition: transform 1s ease;
+}
+
+.list-card:hover .img-list {
+  transform: scale(1.1);
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden; /* Asegura que el zoom no desborde el contenedor */
+  height: 200px;
+  border-radius: 20px;
 }
 
 .no-underline {
@@ -32,11 +53,47 @@ text-decoration: none;
 color: lightgray;
 }
 
-.card-link {
-text-decoration: none;
-}
 
 .custom-description {
   padding-top: 1.5rem; 
   color: #333;
+}
+
+.footer-link{
+  color: white
+}
+
+.social-icon{
+  width: 35px;
+}
+
+.detail-img{
+  border-radius: 20px;
+}
+
+.detail-container {
+  background-color: #fbf1e9;
+  border-radius: 20px;
+}
+
+.detail-container .container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.detail-description {
+  max-width: 70%;
+  margin-top: 20px;
+}
+
+.offer-button{
+  background-color: #107acc;
+}
+
+.card-body {
+  flex: 1 1 auto; /* Permite que el cuerpo de la tarjeta crezca según sea necesario */
+  overflow: hidden; /* Oculta cualquier contenido desbordante */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espacia los elementos dentro del cuerpo */
 }

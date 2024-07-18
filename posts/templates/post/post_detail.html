@@ -1,32 +1,34 @@
 {% extends "base.html" %}
 {% block contents %}
 
-<div class="container mt-4 pt-4">
-    <div class="row">
-        <div class="col-md-6">
-            <img src="{{ post.photo.url }}" class="img-fluid" alt="{{ post.travel_name }}">
-        </div>
-        <div class="col-md-6">
-            <h2>{{ post.travel_name }}</h2>
-            <p>{{ post.detail_description }}</p>
-            <p><strong>Precio: {{ post.price }}</strong></p>
-            
-            <div class="d-flex align-items-center">
-                <div>
-                    <a href="{{ post.url }}" class="btn btn-primary">Ver oferta</a>
-                </div>
-                {% if post.coupon %}
+<div class="container-fluid detail-container mt-4 pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ post.photo.url }}" class="img-fluid detail-img" alt="{{ post.travel_name }}">
+            </div>
+            <div class="col-md-6">
+                <h2>{{ post.travel_name }}</h2>
+                <p class="detail-description">{{ post.detail_description }}</p>
+                <p><strong>Desde: {{ post.price }}€</strong></p>
+                
                 <div class="d-flex align-items-center">
-                    <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly style="max-width: 150px;">
-                    <button class="btn btn-outline-secondary" type="button" onclick="copyCoupon()">Copiar</button>
+                    <div>
+                        <a href="{{ post.url }}" class="btn btn-primary offer-button">Ver oferta</a>
+                    </div>
+                    {% if post.coupon %}
+                    <div class="d-flex align-items-center ms-2">
+                        <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly style="max-width: 150px;">
+                        <button class="btn btn-outline-secondary ms-2" type="button" onclick="copyCoupon()">Copiar</button>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-9 pt-4">
-            <p class="custom-description">{{ post.description }}</p>
+        <div class="row">
+            <div class="col-md-9 pt-4">
+                <p class="custom-description">{{ post.description }}</p>
+            </div>
         </div>
     </div>
 </div>
