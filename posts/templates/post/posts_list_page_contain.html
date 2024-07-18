@@ -1,0 +1,22 @@
+{% for post in posts %}
+    <div class="col-md-4 mb-4">
+        <a href="{{ post.get_absolute_url }}" class="card-link">
+            <div class="card list-card border-0">
+                <div class="img-container">
+                    <img src="{{ post.photo.url }}" class="card-img-top img-list" alt="{{ post.travel_name }}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.travel_name }}</h5>
+                    {% if post.description|length > 200 %}
+                        <p class="card-text text-muted">
+                            {{ post.description|slice:":200" }}{% if post.description|length > 200 %}...{% endif %}
+                        </p>
+                    {% else %}
+                        <p class="card-text text-muted">{{ post.description }}</p>
+                    {% endif %}
+                    <p class="card-text"><strong>Desde: {{ post.price }}€</strong></p>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}

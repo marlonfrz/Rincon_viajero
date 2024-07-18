@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class TravelPost(models.Model):
@@ -12,11 +13,11 @@ class TravelPost(models.Model):
     travel_name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     coupon = models.CharField(max_length=20, blank=True, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     url = models.URLField()
     description = models.CharField(max_length=2500)
     detail_description = models.CharField(max_length=400)
-    photo = models.ImageField(upload_to='travels/%Y/%m/%d/', blank=True, null=True)
+    photo = models.ImageField(upload_to='travels/%Y/%m/%d/', blank=False, null=True)
     created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, default=Status.ACTIVE, choices=Status.choices)
 
@@ -31,3 +32,18 @@ class TravelPost(models.Model):
 
     def get_absolute_url(self):
         return reverse("posts:post_detail", args=[self.slug])
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+
+        super().save(*args, **kwargs)
+
+    def get_unique_slug(self):
+        slug = slugify(self.travel_name)
+        unique_slug = slug
+        counter = 1
+        while TravelPost.objects.filter(slug=unique_slug).exists():
+            unique_slug = f"{slug}-{counter}"
+            counter += 1
+        return unique_slug

@@ -11,10 +11,10 @@ class PostAdmin(admin.ModelAdmin):
         'travel_name',
         'price',
         'coupon',
-        'slug',
         'url',
         'description',
         'detail_description',
         'photo',
         'status',
     ]
+    exclude = ('slug',)
