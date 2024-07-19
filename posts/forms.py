@@ -10,3 +10,11 @@ class TravelPostForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(
+        max_length=50,
+        label='',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Buscar...'}),
+    )

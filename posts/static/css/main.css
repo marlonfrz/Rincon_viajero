@@ -12,13 +12,9 @@ body {
 
 footer {
   text-align: center;
-  padding-top: 2rem;
-  position: fixed;
-  bottom: 0;
   height: 5rem;
   background-color: #107acc;
   width: 100%;
-  border-top: 1px solid lightgray;
 }
 
 .card-link {
@@ -96,4 +92,31 @@ color: lightgray;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Espacia los elementos dentro del cuerpo */
+}
+
+.search-form {
+  max-width: 300px;
+  padding-right: 10px;
+}
+
+.search-button:hover{
+  color: white;
+  background-color: #107acc;
+  
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  margin-bottom: 5rem;
 }
