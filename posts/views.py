@@ -34,3 +34,15 @@ def posts_list(request):
 def post_detail(request, travel_slug):
     post = get_object_or_404(TravelPost, slug=travel_slug)
     return render(request, 'post/post_detail.html', {'post': post})
+
+
+def cookies_policy(request):
+    return render(request, 'warning/cookies_policy.html')
+
+
+def about_us(request):
+    return render(request, 'warning/about_us.html')
+
+
+def legal_warning(request):
+    return render(request, 'warning/legal_warning.html')
