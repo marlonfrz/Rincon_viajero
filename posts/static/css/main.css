@@ -39,7 +39,7 @@ footer {
 
 .img-container {
   position: relative;
-  overflow: hidden; /* Asegura que el zoom no desborde el contenedor */
+  overflow: hidden;
   height: 200px;
   border-radius: 20px;
 }
@@ -52,7 +52,9 @@ color: lightgray;
 
 .custom-description {
   padding-top: 1.5rem; 
-  color: #333;
+  display: block;
+  width: 100%;
+  white-space: normal;
 }
 
 .footer-link{
@@ -87,11 +89,11 @@ color: lightgray;
 }
 
 .card-body {
-  flex: 1 1 auto; /* Permite que el cuerpo de la tarjeta crezca según sea necesario */
-  overflow: hidden; /* Oculta cualquier contenido desbordante */
+  flex: 1 1 auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Espacia los elementos dentro del cuerpo */
+  justify-content: space-between;
 }
 
 .search-form {
@@ -130,4 +132,31 @@ body, html {
 .content {
   flex: 1;
   margin-bottom: 5rem;
+}
+
+.error-template {
+  padding: 40px 15px;
+  margin: 0 auto;
+}
+
+.error-template h1 {
+  font-size: 150px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.error-template h2 {
+  font-size: 36px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.error-template .lead {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.error-template .btn {
+  font-size: 18px;
+  padding: 10px 20px;
 }

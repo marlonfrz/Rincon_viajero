@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.text import slugify
 
 
@@ -19,6 +20,8 @@ class TravelPost(models.Model):
     detail_description = models.CharField(max_length=400)
     photo = models.ImageField(upload_to='travels/%Y/%m/%d/', blank=False, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    deadline = models.DateTimeField(null=True, blank=False)
     status = models.CharField(max_length=20, default=Status.ACTIVE, choices=Status.choices)
 
     class Meta:
@@ -36,7 +39,7 @@ class TravelPost(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self.get_unique_slug()
-
+        self.updated = timezone.now()
         super().save(*args, **kwargs)
 
     def get_unique_slug(self):

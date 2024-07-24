@@ -1,20 +1,28 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
+from django.utils import timezone
 
 from .forms import SearchForm
 from .models import TravelPost
 
 
 def posts_list(request):
+    now = timezone.now()
+
+    TravelPost.objects.filter(deadline__lt=now, status=TravelPost.Status.ACTIVE).update(
+        status=TravelPost.Status.CANCELLED
+    )
+
+    TravelPost.objects.filter(status=TravelPost.Status.CANCELLED).delete()
+
     search_form = SearchForm(request.GET or None)
     query = request.GET.get('query', '')
 
+    active_status = TravelPost.Status.ACTIVE
+
+    posts = TravelPost.objects.filter(status=active_status)
     if query:
-        posts = TravelPost.objects.filter(
-            status=TravelPost.Status.ACTIVE, travel_name__icontains=query
-        )
-    else:
-        posts = TravelPost.objects.filter(status=TravelPost.Status.ACTIVE)
+        posts = posts.filter(travel_name__icontains=query)
 
     paginator = Paginator(posts, 9)
     page_number = request.GET.get('page')
@@ -46,3 +54,7 @@ def about_us(request):
 
 def legal_warning(request):
     return render(request, 'warning/legal_warning.html')
+
+
+def custom_404(request, exception=None):
+    return render(request, '404.html', status=404)
