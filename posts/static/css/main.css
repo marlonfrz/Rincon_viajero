@@ -134,13 +134,15 @@ body, html {
   margin-bottom: 5rem;
 }
 
+/* error 404 */
+
 .error-template {
   padding: 40px 15px;
   margin: 0 auto;
 }
 
 .error-template h1 {
-  font-size: 150px;
+  font-size: 120px;
   font-weight: bold;
   color: #e74c3c;
 }

@@ -10,4 +10,6 @@ urlpatterns = [
     path('politica-de-cookies/', views.cookies_policy, name='cookies_policy'),
     path('sobre-nosotros/', views.about_us, name='about_us'),
     path('avisos-legales/', views.legal_warning, name='legal_warning'),
+    path('test/', views.test, name='test'),
+    path('test2/', views.test2, name='test2'),
 ]

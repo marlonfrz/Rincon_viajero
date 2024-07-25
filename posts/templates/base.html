@@ -22,7 +22,7 @@
 
   <div class="wrapper">
     <header class="d-flex justify-content-between align-items-center p-3">
-      <a href="/"><img src="{% static 'images/x.svg' %}" alt="Logo Rincón Viajero"></a>
+      <a href="{% url 'posts:posts_list' %}"><img src="{% static 'images/x.svg' %}" alt="Logo Rincón Viajero"></a>
       <form method="GET" action="{% url 'posts:posts_list' %}" class="d-flex search-form ms-auto">
         {{ search_form.query }}
         <button type="submit" class="btn btn-outline-primary search-button ms-2">Buscar</button>
