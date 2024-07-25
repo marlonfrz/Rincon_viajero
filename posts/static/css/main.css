@@ -1,8 +1,8 @@
 header {
-  height: 4.5rem;
+  height: 8rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid blue;
-  padding-left: 5rem;
+  padding-left: 1.5rem;
   padding-top: 0.5rem;
 }
 
@@ -15,6 +15,25 @@ footer {
   height: 5rem;
   background-color: #107acc;
   width: 100%;
+}
+
+.img-logo{
+  max-width: 100px;
+  height: auto;
+}
+
+.logo-text {
+  color: #16498C;
+  font-size: 2rem; 
+  font-weight: bold; 
+}
+
+a.text-decoration-none {
+  text-decoration: none !important;
+}
+
+text-decoration-none {
+  text-decoration: none !important;
 }
 
 .card-link {
