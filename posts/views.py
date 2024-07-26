@@ -21,6 +21,7 @@ def posts_list(request):
     active_status = TravelPost.Status.ACTIVE
 
     posts = TravelPost.objects.filter(status=active_status)
+
     if query:
         posts = posts.filter(travel_name__icontains=query)
 
@@ -34,13 +35,14 @@ def posts_list(request):
     }
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(request, 'post/offer_list.html', context)
+        return render(request, 'post/offer_list.html', context)  # fix this
 
     return render(request, 'post/posts_list.html', context)
 
 
-def post_detail(request, travel_slug):
-    post = get_object_or_404(TravelPost, slug=travel_slug)
+def post_detail(request, category, travel_slug):
+    category_choice = TravelPost.get_category_from_slug(category)
+    post = get_object_or_404(TravelPost, slug=travel_slug, category=category_choice)
     return render(request, 'post/post_detail.html', {'post': post})
 
 

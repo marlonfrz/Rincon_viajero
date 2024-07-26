@@ -1,7 +1,7 @@
 header {
   height: 8rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid lightgrey;
   padding-left: 1.5rem;
   padding-top: 0.5rem;
 }
@@ -104,7 +104,19 @@ color: lightgray;
 }
 
 .button-style{
-  background-color: #107acc;
+  background-color: #16498C;
+  color: white;
+  border-color: #16498C;
+  margin-bottom: 10px;
+}
+
+.button-style:hover{
+  background-color: #418EF2;
+  border-color: #418EF2;
+}
+
+.button-container {
+  margin-bottom: 30px; /* Espacio entre los contenedores de botones */
 }
 
 .card-body {
