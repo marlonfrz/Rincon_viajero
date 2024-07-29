@@ -4,6 +4,10 @@ header {
   border-bottom: 1px solid lightgrey;
   padding-left: 1.5rem;
   padding-top: 0.5rem;
+  background-image: url('../images/banner4.jfif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 body {
@@ -13,8 +17,17 @@ body {
 footer {
   text-align: center;
   height: 5rem;
-  background-color: #107acc;
+  background-color: #16498C;
   width: 100%;
+}
+
+.footer-link{
+  color: white
+}
+
+.social-icon{
+  width: 35px;
+  border-radius: 5px;
 }
 
 .img-logo{
@@ -74,14 +87,6 @@ color: lightgray;
   display: block;
   width: 100%;
   white-space: normal;
-}
-
-.footer-link{
-  color: white
-}
-
-.social-icon{
-  width: 35px;
 }
 
 .detail-img{

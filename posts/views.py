@@ -6,7 +6,7 @@ from .forms import SearchForm
 from .models import TravelPost
 
 
-def posts_list(request):
+def posts_list(request, category=None):
     now = timezone.now()
 
     TravelPost.objects.filter(deadline__lt=now, status=TravelPost.Status.ACTIVE).update(
@@ -22,8 +22,14 @@ def posts_list(request):
 
     posts = TravelPost.objects.filter(status=active_status)
 
+    if category:
+        posts = posts.filter(category=category)
+
     if query:
         posts = posts.filter(travel_name__icontains=query)
+
+    if not posts.exists():
+        return render(request, 'post/no_posts_apologies.html')
 
     paginator = Paginator(posts, 9)
     page_number = request.GET.get('page')
@@ -38,6 +44,22 @@ def posts_list(request):
         return render(request, 'post/offer_list.html', context)  # fix this
 
     return render(request, 'post/posts_list.html', context)
+
+
+def flights_list(request):
+    return posts_list(request, TravelPost.Category.FLIGHTS)
+
+
+def flights_and_hotel_list(request):
+    return posts_list(request, TravelPost.Category.FLIGHTS_AND_HOTEL)
+
+
+def accommodation_list(request):
+    return posts_list(request, TravelPost.Category.ACCOMMODATION)
+
+
+def cruises_list(request):
+    return posts_list(request, TravelPost.Category.CRUISES)
 
 
 def post_detail(request, category, travel_slug):

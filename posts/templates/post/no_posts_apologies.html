@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contents %}
+<div class="container text-center my-5">
+    <div class="error-template">
+        <h1 class="display-1">¡Vaya!</h1>
+        <h2 class="display-4">No hay publicaciones disponibles de esta categoría en este momento.</h2>
+        <a class="btn btn-primary btn-lg button-style" href="{% url 'posts:posts_list' %}">Volver a la página principal</a>
+    </div>
+</div>
+{% endblock %}
