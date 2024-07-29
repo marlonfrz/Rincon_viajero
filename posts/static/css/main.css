@@ -10,6 +10,12 @@ header {
   background-position: center center;
 }
 
+.active-category {
+  background-color: #a3a8b7 !important;
+  color: #ffffff !important;
+  border-color: #a3a8b7 !important;
+}
+
 body {
   margin-bottom: 6rem;
 }
@@ -121,7 +127,7 @@ color: lightgray;
 }
 
 .button-container {
-  margin-bottom: 30px; /* Espacio entre los contenedores de botones */
+  margin-bottom: 30px;
 }
 
 .card-body {

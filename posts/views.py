@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db import transaction
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 
@@ -8,17 +9,16 @@ from .models import TravelPost
 
 def posts_list(request, category=None):
     now = timezone.now()
+    active_status = TravelPost.Status.ACTIVE
 
-    TravelPost.objects.filter(deadline__lt=now, status=TravelPost.Status.ACTIVE).update(
-        status=TravelPost.Status.CANCELLED
-    )
-
-    TravelPost.objects.filter(status=TravelPost.Status.CANCELLED).delete()
+    with transaction.atomic():
+        TravelPost.objects.filter(deadline__lt=now, status=active_status).update(
+            status=TravelPost.Status.CANCELLED
+        )
+        TravelPost.objects.filter(status=TravelPost.Status.CANCELLED).delete()
 
     search_form = SearchForm(request.GET or None)
     query = request.GET.get('query', '')
-
-    active_status = TravelPost.Status.ACTIVE
 
     posts = TravelPost.objects.filter(status=active_status)
 
@@ -29,7 +29,7 @@ def posts_list(request, category=None):
         posts = posts.filter(travel_name__icontains=query)
 
     if not posts.exists():
-        return render(request, 'post/no_posts_apologies.html')
+        return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
     paginator = Paginator(posts, 9)
     page_number = request.GET.get('page')
@@ -38,10 +38,8 @@ def posts_list(request, category=None):
     context = {
         'posts': page_posts,
         'search_form': search_form,
+        'active_category': category,
     }
-
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(request, 'post/offer_list.html', context)  # fix this
 
     return render(request, 'post/posts_list.html', context)
 

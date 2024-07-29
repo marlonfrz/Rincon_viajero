@@ -14,25 +14,27 @@
         let page = 2;
         const loadMoreButton = document.getElementById('load-more');
 
-        loadMoreButton.addEventListener('click', function() {
-            fetch(`?page=${page}`)
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const newPosts = doc.getElementById('posts-container').innerHTML;
-                    const postsContainer = document.getElementById('posts-container');
-                    postsContainer.insertAdjacentHTML('beforeend', newPosts);
+        if (loadMoreButton) {
+            loadMoreButton.addEventListener('click', function() {
+                fetch(`?page=${page}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const newPosts = doc.getElementById('posts-container').innerHTML;
+                        const newLoadMoreButton = doc.querySelector('#load-more');
+                        const postsContainer = document.getElementById('posts-container');
+                        postsContainer.insertAdjacentHTML('beforeend', newPosts);
 
-                    // Check if there are more pages to load
-                    if (doc.querySelector('#load-more')) {
-                        page += 1;
-                    } else {
-                        loadMoreButton.style.display = 'none';
-                    }
-                })
-                .catch(error => console.log('Error:', error));
-        });
+                        if (newLoadMoreButton) {
+                            page = newLoadMoreButton.getAttribute('data-next-page');
+                        } else {
+                            loadMoreButton.style.display = 'none';
+                        }
+                    })
+                    .catch(error => console.log('Error:', error));
+            });
+        }
     });
 </script>
 {% endblock %}

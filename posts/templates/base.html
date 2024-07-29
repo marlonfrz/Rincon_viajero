@@ -37,16 +37,16 @@
     <div class="container">
       <div class="row justify-content-center button-container mb-5 mt-3">
           <div class="col-auto col-button">
-              <a href="{% url 'posts:flights_list' %}" class="btn btn-outline-primary button-style">Vuelos</a>
+              <a href="{% url 'posts:flights_list' %}" class="btn btn-outline-primary button-style {% if  active_category == 'FL' %}active-category{% endif %}">Vuelos</a>
           </div>
           <div class="col-auto col-button">
-              <a href="{% url 'posts:flights_and_hotel_list' %}" class="btn btn-outline-primary button-style">Vuelos + Hotel</a>
+              <a href="{% url 'posts:flights_and_hotel_list' %}" class="btn btn-outline-primary button-style {% if  active_category == 'FH' %}active-category{% endif %}">Vuelos + Hotel</a>
           </div>
           <div class="col-auto col-button">
-              <a href="{% url 'posts:accommodation_list' %}" class="btn btn-outline-primary button-style">Alojamiento</a>
+              <a href="{% url 'posts:accommodation_list' %}" class="btn btn-outline-primary button-style {% if  active_category == 'AC' %}active-category{% endif %}">Alojamiento</a>
           </div>
           <div class="col-auto col-button">
-              <a href="{% url 'posts:cruises_list' %}" class="btn btn-outline-primary button-style">Cruceros</a>
+              <a href="{% url 'posts:cruises_list' %}" class="btn btn-outline-primary button-style {% if  active_category == 'CR' %}active-category{% endif %}">Cruceros</a>
           </div>
           <div class="col-auto col-button">
               <a href="{% url 'posts:posts_list' %}" class="btn btn-outline-secondary button-style">Todos</a>
