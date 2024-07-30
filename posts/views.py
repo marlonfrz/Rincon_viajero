@@ -8,11 +8,10 @@ from .models import TravelPost
 
 
 def posts_list(request, category=None):
-    now = timezone.now()
     active_status = TravelPost.Status.ACTIVE
 
     with transaction.atomic():
-        TravelPost.objects.filter(deadline__lt=now, status=active_status).update(
+        TravelPost.objects.filter(deadline__lt=timezone.now(), status=active_status).update(
             status=TravelPost.Status.CANCELLED
         )
         TravelPost.objects.filter(status=TravelPost.Status.CANCELLED).delete()
