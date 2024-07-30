@@ -13,13 +13,11 @@
                 <p><strong>Desde: {{ post.price }}€</strong></p>
                 
                 <div class="d-flex align-items-center">
-                    <div>
                         <a href="{{ post.url }}" class="btn btn-primary button-style">Ver oferta</a>
-                    </div>
                     {% if post.coupon %}
-                    <div class="d-flex align-items-center ms-2">
-                        <input type="text" id="couponCode" class="form-control" value="{{ post.coupon }}" readonly style="max-width: 150px;">
-                        <button class="btn btn-outline-secondary ms-2" type="button" onclick="copyCoupon()">Copiar</button>
+                    <div class="d-flex align-items-center ms-3">
+                        <input type="text" id="couponCode" class="form-control form-coupon" value="{{ post.coupon }}" readonly>
+                        <button class="btn btn-outline-secondary coupon-button  form-button ms-2" type="button" onclick="copyCoupon()">Copiar</button>
                     </div>
                     {% endif %}
                 </div>

@@ -130,6 +130,16 @@ color: lightgray;
   margin-bottom: 30px;
 }
 
+.coupon-button{
+  background-color: #6f6f6f;
+  color: white;
+}
+
+.coupon-button:hover{
+  background-color: #5e5e5e;
+  color: white;
+}
+
 .card-body {
   flex: 1 1 auto;
   overflow: hidden;
@@ -203,4 +213,13 @@ body, html {
 .error-template .btn {
   font-size: 18px;
   padding: 10px 20px;
+}
+
+.form-coupon {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.form-button{
+  margin-bottom: 10px;
 }
