@@ -23,9 +23,8 @@ def posts_list(request, category=None):
 
     if category:
         category_slug = TravelPost.get_category_from_slug(category)
-        if category_slug:
-            posts = posts.filter(category=category_slug)
-        else:
+        posts = posts.filter(category=category_slug)
+        if not posts.exists():
             return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
     if query:
