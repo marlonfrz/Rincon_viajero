@@ -30,8 +30,8 @@ def convert_image_to_webp(sender, instance, **kwargs):
         buffer = io.BytesIO()
         image.save(buffer, format='WEBP')
         webp_image = ContentFile(
-            buffer.getvalue(), name=instance.photo.name.replace('.jpg', '.webp')
+            buffer.getvalue(), name=instance.photo.name.rsplit('.')[0] + '.webp'
         )
 
-        instance.photo.save(instance.photo.name.replace('.jpg', '.webp'), webp_image, save=False)
+        instance.photo.save(instance.photo.name.rsplit('.')[0] + '.webp', webp_image, save=False)
         instance.save()

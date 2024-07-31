@@ -22,7 +22,11 @@ def posts_list(request, category=None):
     posts = TravelPost.objects.filter(status=active_status)
 
     if category:
-        posts = posts.filter(category=category)
+        category_slug = TravelPost.get_category_from_slug(category)
+        if category_slug:
+            posts = posts.filter(category=category_slug)
+        else:
+            return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
     if query:
         posts = posts.filter(travel_name__icontains=query)
@@ -41,22 +45,6 @@ def posts_list(request, category=None):
     }
 
     return render(request, 'post/posts_list.html', context)
-
-
-def flights_list(request):
-    return posts_list(request, TravelPost.Category.FLIGHTS)
-
-
-def flights_and_hotel_list(request):
-    return posts_list(request, TravelPost.Category.FLIGHTS_AND_HOTEL)
-
-
-def accommodation_list(request):
-    return posts_list(request, TravelPost.Category.ACCOMMODATION)
-
-
-def cruises_list(request):
-    return posts_list(request, TravelPost.Category.CRUISES)
 
 
 def post_detail(request, category, travel_slug):
