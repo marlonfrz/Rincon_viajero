@@ -20,6 +20,13 @@ def posts_list(request, category=None):
     query = request.GET.get('query', '')
 
     posts = TravelPost.objects.filter(status=active_status)
+    no_results = False
+
+    if query:
+        posts = TravelPost.objects.filter(travel_name__icontains=query, status=active_status)
+        if not posts.exists():
+            posts = TravelPost.objects.filter(status=active_status)
+            no_results = True
 
     if category:
         category_slug = TravelPost.get_category_from_slug(category)
@@ -27,10 +34,7 @@ def posts_list(request, category=None):
         if not posts.exists():
             return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
-    if query:
-        posts = posts.filter(travel_name__icontains=query)
-
-    if not posts.exists():
+    if not posts.exists() and not query:
         return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
     paginator = Paginator(posts, 9)
@@ -41,6 +45,7 @@ def posts_list(request, category=None):
         'posts': page_posts,
         'search_form': search_form,
         'active_category': category,
+        'no_results': no_results,
     }
 
     return render(request, 'post/posts_list.html', context)
@@ -49,7 +54,9 @@ def posts_list(request, category=None):
 def post_detail(request, category, travel_slug):
     category_choice = TravelPost.get_category_from_slug(category)
     post = get_object_or_404(TravelPost, slug=travel_slug, category=category_choice)
-    return render(request, 'post/post_detail.html', {'post': post})
+
+    search_form = SearchForm(request.GET or None)
+    return render(request, 'post/post_detail.html', {'post': post, 'search_form': search_form})
 
 
 def cookies_policy(request):
