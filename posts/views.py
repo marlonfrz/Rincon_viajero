@@ -23,7 +23,7 @@ def posts_list(request, category=None):
     no_results = False
 
     if query:
-        posts = TravelPost.objects.filter(travel_name__icontains=query, status=active_status)
+        posts = posts.filter(travel_name__icontains=query)
         if not posts.exists():
             posts = TravelPost.objects.filter(status=active_status)
             no_results = True

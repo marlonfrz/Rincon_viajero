@@ -17,5 +17,6 @@ class PostAdmin(admin.ModelAdmin):
         'photo',
         'deadline',
         'status',
+        'category',
     ]
     exclude = ('slug',)
