@@ -4,5 +4,5 @@ document.addEventListener("DOMContentLoaded", function() {
       if (messageElement) {
         messageElement.style.display = 'none';
       }
-    }, 3000);
+    }, 5000);
   });

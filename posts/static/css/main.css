@@ -1,13 +1,10 @@
 header {
-  height: 8rem;
+  height: 12rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid lightgrey;
   padding-left: 1.5rem;
   padding-top: 0.5rem;
-  background-image: url('../images/banner4.jfif');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: linear-gradient(to right, #cceeff, #99ccff, #66b2ff);
 }
 
 .active-category {
