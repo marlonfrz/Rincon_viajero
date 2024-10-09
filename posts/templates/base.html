@@ -27,12 +27,30 @@
         <img src="{% static 'images/logo_rincon_viajero.png' %}" alt="Logo Rincón Viajero" class="img-fluid img-logo">
         <p class="logo-text mb-0">RincónViajero</p>
       </a>
-      <form method="GET" action="{% url 'posts:posts_list' %}" class="d-flex search-form ms-auto">
-        {{ search_form.query }}
-        <button type="submit" class="btn btn-outline-primary search-button ms-2">Buscar</button>
-        {% csrf_token %}
-      </form>
+      <button class="btn search-button" id="search-icon">
+        <img src="{% static 'images/search.svg' %}" alt="Buscar" style="width: 25px; height: 25px;">
+      </button>
     </header>
+
+    <!-- search modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="searchModalLabel">Buscar en RincónViajero</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="GET" action="{% url 'posts:posts_list' %}">
+              {% csrf_token %}
+              {{ search_form.query }}
+              <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     {% if no_results %}
     <div id="no-results-message" class="alert alert-warning" role="alert">
       No se encontraron resultados para su búsqueda.
@@ -88,9 +106,12 @@
   <!-- Cookie Consent -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-<script src="{% static 'js/cookie_consent.js' %}"></script>
+<script src="{% static 'js/cookieConsent.js' %}"></script>
 
   <!-- No result message -->
-<script src="{% static 'js/no_results_message.js' %}"></script>
+<script src="{% static 'js/noResultsMessage.js' %}"></script>
+
+  <!-- Search Modal -->
+<script src="{% static 'js/searchModal.js' %}"></script>
 </body>
 </html>
