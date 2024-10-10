@@ -51,9 +51,9 @@ def posts_list(request, category=None):
     return render(request, 'post/posts_list.html', context)
 
 
-def post_detail(request, category, travel_slug):
+def post_detail(request, category, post_slug):
     category_choice = TravelPost.get_category_from_slug(category)
-    post = get_object_or_404(TravelPost, slug=travel_slug, category=category_choice)
+    post = get_object_or_404(TravelPost, slug=post_slug, category=category_choice)
 
     search_form = SearchForm(request.GET or None)
     return render(request, 'post/post_detail.html', {'post': post, 'search_form': search_form})
