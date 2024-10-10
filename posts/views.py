@@ -34,8 +34,8 @@ def posts_list(request, category=None):
         if not posts.exists():
             return render(request, 'post/no_posts_apologies.html', {'active_category': category})
 
-    if not posts.exists() and not query:
-        return render(request, 'post/no_posts_apologies.html', {'active_category': category})
+    if not posts.exists():
+        return render(request, 'post/no_posts_apologies.html')
 
     paginator = Paginator(posts, 9)
     page_number = request.GET.get('page')
